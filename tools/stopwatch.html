@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online stopwatch.">
+    <title>Stopwatch • Daily Utility Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-center py-12">
+    <h1 class="text-4xl font-semibold">Stopwatch</h1>
+    <div id="d" class="my-10 text-7xl font-mono">00:00.00</div>
+    <button onclick="start()" class="px-8 py-3 bg-emerald-600 text-white rounded-2xl">Start</button>
+    <script>let t=0,i;function start(){clearInterval(i);i=setInterval(()=>{t+=10;const m=Math.floor(t/60000);document.getElementById('d').textContent=`${m}:${Math.floor((t%60000)/1000)}`},10)}</script>
+</body>
+</html>

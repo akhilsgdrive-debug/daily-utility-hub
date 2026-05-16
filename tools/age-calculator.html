@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online age calculator.">
+    <title>Age Calculator • Daily Utility Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 py-12">
+    <div class="max-w-md mx-auto px-6">
+        <h1 class="text-4xl font-semibold">Age Calculator</h1>
+        <input id="dob" type="date" class="mt-6 w-full px-4 py-3 rounded-2xl border">
+        <button onclick="calc()" class="mt-4 w-full py-3 bg-zinc-900 text-white rounded-2xl">Calculate Age</button>
+        <div id="r" class="mt-4 p-4 rounded-2xl border hidden"></div>
+    </div>
+    <script>function calc(){const d=new Date(document.getElementById('dob').value);const a=Math.floor((Date.now()-d)/31536000000);document.getElementById('r').textContent='You are '+a+' years old';document.getElementById('r').classList.remove('hidden');}</script>
+</body>
+</html>

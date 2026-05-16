@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free BMI Calculator online.">
+    <title>BMI Calculator • Daily Utility Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 py-12">
+    <div class="max-w-md mx-auto px-6">
+        <h1 class="text-4xl font-semibold">BMI Calculator</h1>
+        <input id="h" type="number" placeholder="Height cm" class="mt-6 w-full px-4 py-3 rounded-2xl border">
+        <input id="w" type="number" placeholder="Weight kg" class="mt-3 w-full px-4 py-3 rounded-2xl border">
+        <button onclick="calc()" class="mt-4 w-full py-3 bg-zinc-900 text-white rounded-2xl">Calculate</button>
+        <div id="r" class="mt-4 p-4 rounded-2xl border hidden"></div>
+    </div>
+    <script>function calc(){const h=parseFloat(document.getElementById('h').value)/100;const w=parseFloat(document.getElementById('w').value);const b=(w/(h*h)).toFixed(1);document.getElementById('r').textContent='BMI: '+b;document.getElementById('r').classList.remove('hidden');}</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online to-do list. Simple task manager.">
+    <title>Free To-Do List • Daily Utility Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 py-10">
+    <div class="max-w-xl mx-auto px-6">
+        <h1 class="text-4xl font-semibold">To-Do List</h1>
+        <div class="flex gap-2 mt-6"><input id="task" class="flex-1 px-4 py-3 rounded-2xl border"><button onclick="add()" class="px-6 bg-zinc-900 text-white rounded-2xl">Add</button></div>
+        <ul id="list" class="mt-6 space-y-2"></ul>
+    </div>
+    <script>function add(){const i=document.getElementById('task');if(!i.value)return;const l=document.createElement('li');l.className='p-4 border rounded-2xl flex justify-between';l.innerHTML=`<span>${i.value}</span><button onclick="this.parentElement.remove()">Delete</button>`;document.getElementById('list').appendChild(l);i.value='';}</script>
+</body>
+</html>
