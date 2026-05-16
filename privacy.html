@@ -1,1 +1,52 @@
-REPLACED
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for Daily Utility Hub. We collect zero personal data. All tools run locally in your browser.">
+    <meta property="og:title" content="Privacy Policy • Daily Utility Hub">
+    <title>Privacy Policy • Daily Utility Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>tailwind.config = { darkMode: 'class' };</script>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+    <nav class="sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl tracking-tighter">D</div>
+                <span class="font-semibold text-xl tracking-tight">Daily Utility <span class="text-indigo-600 dark:text-indigo-400">Hub</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-indigo-600">Home</a>
+                <a href="tools.html" class="hover:text-indigo-600">Tools</a>
+                <a href="about.html" class="hover:text-indigo-600">About</a>
+                <a href="contact.html" class="hover:text-indigo-600">Contact</a>
+            </div>
+            <div>
+                <button id="dark-mode-toggle" class="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="max-w-3xl mx-auto px-6 py-14">
+        <h1 class="text-5xl font-semibold tracking-tighter">Privacy Policy</h1>
+        <p class="text-sm text-zinc-500 mt-2">Last updated: May 2026</p>
+        <div class="prose prose-zinc dark:prose-invert mt-10 max-w-none text-[15px]">
+            <p><strong>Short version:</strong> We don't collect any personal data. Everything happens locally in your browser.</p>
+            <h2 class="mt-10">What data do we collect?</h2>
+            <p>Nothing. Daily Utility Hub is a completely static website with client-side JavaScript. We do not use cookies for tracking, we do not have a backend, and we do not log IP addresses or any user behavior.</p>
+            <h2 class="mt-8">Local Storage</h2>
+            <p>Some tools (Notes and To-Do List) use your browser's <code>localStorage</code> to save your data between visits. This data stays on your device and is never sent to any server. You can clear it anytime from your browser settings.</p>
+            <h2 class="mt-8">Third-party services</h2>
+            <p>We use Tailwind CSS via CDN for styling. No other third-party trackers or analytics are loaded.</p>
+            <h2 class="mt-8">Your rights</h2>
+            <p>Since we store no data about you, there is nothing to request, delete, or export from our side. All control is in your hands via the tools themselves and your browser.</p>
+            <div class="mt-10 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm">This site is open source. Feel free to self-host it yourself.</div>
+        </div>
+    </div>
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 text-center text-sm text-zinc-500">&copy; Daily Utility Hub. Privacy by design.</footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
