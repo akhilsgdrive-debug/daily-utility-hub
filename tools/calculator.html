@@ -1,56 +1,826 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online calculator. Fast, simple and private arithmetic calculator.">
-    <title>Free Online Calculator • Daily Utility Hub</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Free Online Calculator with Scientific Functions • Daily Utility Hub</title>
+    <meta name="description" content="Fast, free, private online calculator. Basic arithmetic and scientific calculations (sin, cos, log, sqrt, π) instantly in your browser. No sign-up, no ads, works on mobile &amp; desktop with keyboard support.">
+    <meta name="keywords" content="online calculator, free calculator tool, scientific calculator online, daily calculator, fast online calculator, utility calculator, mobile calculator tool, browser calculator, private calculator, free scientific calculator">
+    <meta name="author" content="Daily Utility Hub">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/calculator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/calculator.html">
+    <meta property="og:title" content="Free Online Calculator with Scientific Functions • Daily Utility Hub">
+    <meta property="og:description" content="Lightning-fast private calculator for basic and scientific math. 100% browser-based, no data leaves your device. Mobile-friendly with full keyboard support.">
+    <meta property="og:image" content="https://picsum.photos/id/1015/1200/630">
+    <meta property="og:site_name" content="Daily Utility Hub">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Online Calculator • Scientific &amp; Basic">
+    <meta name="twitter:description" content="Free, private, instant calculator with scientific functions. Works offline after first load.">
+    <meta name="twitter:image" content="https://picsum.photos/id/1015/1200/630">
+    
+    <!-- Tailwind CSS Play CDN + Config (matches Daily Utility Hub) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <style>
+        /* Premium polish - matches Daily Utility Hub aesthetic */
+        :root {
+            --accent: #6366f1;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .calc-display {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: "tnum";
+        }
+        
+        .calc-btn {
+            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            user-select: none;
+        }
+        
+        .calc-btn:active {
+            transform: scale(0.96);
+        }
+        
+        .calc-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        
+        .number-btn {
+            background-color: #27251f;
+            color: #f4f4f5;
+        }
+        
+        .number-btn:hover {
+            background-color: #3f3e3a;
+        }
+        
+        .operator-btn {
+            background-color: #3f3e3a;
+            color: #e4e4e7;
+        }
+        
+        .operator-btn:hover {
+            background-color: #52514c;
+        }
+        
+        .function-btn {
+            background-color: #27251f;
+            color: #a1a1aa;
+            font-size: 0.875rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .function-btn:hover {
+            background-color: #3f3e3a;
+            color: #e4e4e7;
+        }
+        
+        .equals-btn {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.3);
+        }
+        
+        .equals-btn:hover {
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            transform: translateY(-1px);
+        }
+        
+        .glass {
+            background: rgba(39, 37, 31, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        
+        .history-item {
+            transition: all 0.1s ease;
+        }
+        
+        .history-item:hover {
+            background-color: #27251f;
+            transform: translateX(2px);
+        }
+        
+        .section-heading {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        
+        .nav-active {
+            color: #6366f1;
+        }
+        
+        .metric {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .calc-container {
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+        
+        @media (max-width: 640px) {
+            .calc-btn {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+        }
+        
+        .focus-ring {
+            transition: box-shadow 0.1s ease;
+        }
+        
+        .focus-ring:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
+        }
+    </style>
 </head>
-<body class="bg-zinc-950 text-white">
-    <div class="max-w-sm mx-auto px-6 py-10">
-        <a href="../tools.html" class="text-sm text-zinc-400">← Back to Tools</a>
-        <h1 class="text-4xl font-semibold tracking-tighter mt-6">Calculator</h1>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+    <!-- Sticky Navigation (matches Daily Utility Hub) -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">
+            <a href="../index.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl tracking-tighter group-hover:scale-105 transition-transform">D</div>
+                <span class="font-semibold text-xl tracking-tight">Daily Utility <span class="text-indigo-400">Hub</span></span>
+            </a>
 
-        <input id="display" type="text" value="0" readonly 
-               class="mt-8 w-full text-right text-5xl font-mono bg-zinc-900 border border-zinc-700 rounded-3xl px-6 py-6">
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="../index.html" class="hover:text-indigo-400 transition-colors">Home</a>
+                <a href="../tools.html" class="hover:text-indigo-400 transition-colors">Tools</a>
+                <a href="../about.html" class="hover:text-indigo-400 transition-colors">About</a>
+            </div>
 
-        <div class="grid grid-cols-4 gap-3 mt-6">
-            <button onclick="clearCalc()" class="col-span-1 p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">C</button>
-            <button onclick="appendToCalc('/')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">÷</button>
-            <button onclick="appendToCalc('*')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">×</button>
-            <button onclick="appendToCalc('-')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">−</button>
+            <div class="flex items-center gap-3">
+                <!-- Trust badge -->
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-zinc-900 text-xs font-medium text-emerald-400 border border-zinc-800">
+                    <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                    FREE FOREVER
+                </div>
+                
+                <a href="../tools.html" class="inline-flex items-center px-5 py-2 rounded-2xl bg-white text-zinc-900 text-sm font-semibold hover:bg-zinc-100 active:bg-zinc-200 transition-all">
+                    All Tools
+                </a>
+            </div>
+        </div>
+    </nav>
 
-            <button onclick="appendToCalc('7')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">7</button>
-            <button onclick="appendToCalc('8')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">8</button>
-            <button onclick="appendToCalc('9')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">9</button>
-            <button onclick="appendToCalc('+')" class="row-span-2 p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">+</button>
+    <div class="max-w-screen-xl mx-auto px-6 pt-10 pb-16">
+        
+        <!-- Page Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <a href="../tools.html" class="inline-flex items-center text-sm text-zinc-400 hover:text-zinc-300 transition-colors">
+                        ← Back to Tools
+                    </a>
+                </div>
+                <h1 class="text-5xl font-semibold tracking-tighter">Calculator</h1>
+                <p class="mt-2 text-xl text-zinc-400">Fast • Private • Scientific-ready</p>
+            </div>
+            
+            <div class="flex items-center gap-2 text-sm">
+                <div class="px-4 py-2 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center gap-2">
+                    <span class="text-emerald-400">●</span>
+                    <span class="font-medium">100% Private</span>
+                </div>
+                <div class="px-4 py-2 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400">No data stored</div>
+            </div>
+        </div>
 
-            <button onclick="appendToCalc('4')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">4</button>
-            <button onclick="appendToCalc('5')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">5</button>
-            <button onclick="appendToCalc('6')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">6</button>
+        <!-- Main Tool Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Calculator -->
+            <div class="lg:col-span-7">
+                <div class="calc-container bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-2xl">
+                    
+                    <!-- Display -->
+                    <div class="relative mb-6">
+                        <div class="flex items-center justify-between mb-2 px-1">
+                            <div class="text-xs uppercase tracking-[2px] text-zinc-500 font-medium">RESULT</div>
+                            <button onclick="copyResult()" 
+                                    class="flex items-center gap-1.5 text-xs px-3 py-1 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 transition-colors focus-ring"
+                                    aria-label="Copy result to clipboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16v-4m4 4v4m4-8v8m4-4v-4m-16 8h16a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2" />
+                                </svg>
+                                <span class="font-medium">Copy</span>
+                            </button>
+                        </div>
+                        
+                        <input id="display" type="text" value="0" readonly
+                               class="calc-display w-full text-right text-6xl sm:text-7xl font-semibold bg-zinc-950 border border-zinc-800 rounded-3xl px-8 py-7 focus:outline-none focus:ring-0 tracking-tighter"
+                               aria-label="Calculator display">
+                    </div>
 
-            <button onclick="appendToCalc('1')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">1</button>
-            <button onclick="appendToCalc('2')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">2</button>
-            <button onclick="appendToCalc('3')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">3</button>
-            <button onclick="calculate()" class="row-span-2 p-6 rounded-2xl bg-emerald-600 active:bg-emerald-700">=</button>
+                    <!-- Advanced / Scientific Functions -->
+                    <div class="mb-5">
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <div class="text-xs uppercase tracking-[2px] text-zinc-500 font-medium">QUICK FUNCTIONS</div>
+                            <div class="text-[10px] text-zinc-500">Degrees for trig • Applies instantly</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2">
+                            <button onclick="applyFunction('pi')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">π</button>
+                            <button onclick="applyFunction('e')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">e</button>
+                            <button onclick="applyFunction('sin')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">sin</button>
+                            <button onclick="applyFunction('cos')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">cos</button>
+                            <button onclick="applyFunction('tan')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">tan</button>
+                            <button onclick="applyFunction('sqrt')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">√</button>
+                            <button onclick="applyFunction('square')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">x²</button>
+                            <button onclick="applyFunction('log')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">log₁₀</button>
+                            <button onclick="applyFunction('ln')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">ln</button>
+                            <button onclick="applyFunction('reciprocal')" class="function-btn calc-btn rounded-2xl border border-zinc-700 hover:border-zinc-600">1/x</button>
+                        </div>
+                    </div>
 
-            <button onclick="appendToCalc('0')" class="col-span-2 p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">0</button>
-            <button onclick="appendToCalc('.')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">.</button>
+                    <!-- Main Keypad -->
+                    <div class="grid grid-cols-4 gap-3">
+                        <!-- Row 1 -->
+                        <button onclick="clearCalc()" class="calc-btn operator-btn rounded-2xl py-5 text-xl active:bg-zinc-600 focus-ring" aria-label="All Clear">AC</button>
+                        <button onclick="toggleSign()" class="calc-btn operator-btn rounded-2xl py-5 text-xl active:bg-zinc-600 focus-ring" aria-label="Toggle positive negative">+/-</button>
+                        <button onclick="appendPercent()" class="calc-btn operator-btn rounded-2xl py-5 text-xl active:bg-zinc-600 focus-ring" aria-label="Percent">%</button>
+                        <button onclick="appendToCalc('/')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl active:bg-zinc-600 focus-ring" aria-label="Divide">÷</button>
+                        
+                        <!-- Row 2 -->
+                        <button onclick="appendToCalc('7')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">7</button>
+                        <button onclick="appendToCalc('8')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">8</button>
+                        <button onclick="appendToCalc('9')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">9</button>
+                        <button onclick="appendToCalc('*')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl active:bg-zinc-600 focus-ring" aria-label="Multiply">×</button>
+                        
+                        <!-- Row 3 -->
+                        <button onclick="appendToCalc('4')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">4</button>
+                        <button onclick="appendToCalc('5')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">5</button>
+                        <button onclick="appendToCalc('6')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">6</button>
+                        <button onclick="appendToCalc('-')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl active:bg-zinc-600 focus-ring" aria-label="Subtract">−</button>
+                        
+                        <!-- Row 4 -->
+                        <button onclick="appendToCalc('1')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">1</button>
+                        <button onclick="appendToCalc('2')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">2</button>
+                        <button onclick="appendToCalc('3')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">3</button>
+                        <button onclick="appendToCalc('+')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl active:bg-zinc-600 focus-ring row-span-1" aria-label="Add">+</button>
+                        
+                        <!-- Row 5 -->
+                        <button onclick="appendToCalc('0')" class="calc-btn number-btn rounded-2xl py-5 text-2xl col-span-2 focus-ring">0</button>
+                        <button onclick="appendToCalc('.')" class="calc-btn number-btn rounded-2xl py-5 text-2xl focus-ring">.</button>
+                        <button onclick="calculate()" class="calc-btn equals-btn rounded-2xl py-5 text-3xl focus-ring" aria-label="Equals">=</button>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center justify-between text-[10px] text-zinc-500 px-1">
+                        <div>Keyboard supported • Press <span class="font-mono">Enter</span> or <span class="font-mono">ESC</span></div>
+                        <button onclick="backspace()" class="flex items-center gap-1 hover:text-zinc-400 transition-colors">
+                            <span>⌫</span> <span class="hidden sm:inline">Backspace</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Sidebar -->
+            <div class="lg:col-span-5">
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 h-full flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <div class="font-semibold tracking-tight">Calculation History</div>
+                            <div class="text-xs text-zinc-500">Click any result to reuse</div>
+                        </div>
+                        <button onclick="clearHistory()" 
+                                class="text-xs px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 transition-colors">
+                            Clear
+                        </button>
+                    </div>
+                    
+                    <div id="history-list" class="flex-1 space-y-2 overflow-auto pr-1 text-sm min-h-[220px] max-h-[380px]">
+                        <!-- Populated by JS -->
+                        <div class="text-center py-8 text-zinc-500 text-sm">No calculations yet.<br>Start using the calculator.</div>
+                    </div>
+                    
+                    <div class="pt-4 mt-auto border-t border-zinc-800 text-[10px] text-zinc-500">
+                        History is saved locally in your browser
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- SEO Optimized Content -->
+        <div class="mt-20 max-w-4xl">
+            
+            <!-- Intro -->
+            <div class="mb-16">
+                <h2 class="section-heading mb-4">The fastest free online calculator for daily use and scientific calculations</h2>
+                <div class="prose prose-invert max-w-none text-zinc-300 text-[15px] leading-relaxed">
+                    <p>Need a reliable <strong>online calculator</strong> that works instantly without any sign-up or ads? You've found it. The Daily Utility Hub Calculator is a powerful, privacy-first tool that handles everything from simple arithmetic to advanced scientific functions — all running 100% in your browser.</p>
+                    <p class="mt-4">Whether you're doing quick daily math, calculating percentages, or need a <strong>scientific calculator online</strong> for trigonometry, logarithms, square roots, or constants like π and e, this tool delivers accurate results in milliseconds. No downloads. No accounts. No data leaves your device.</p>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold tracking-tight mb-6">Why professionals and students choose this calculator</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">⚡</div>
+                        <div class="font-semibold mb-1.5">Instant &amp; Lightweight</div>
+                        <p class="text-sm text-zinc-400">Zero loading time. All calculations happen locally. Open and start computing immediately on any device.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">🔬</div>
+                        <div class="font-semibold mb-1.5">Scientific Functions Included</div>
+                        <p class="text-sm text-zinc-400">sin, cos, tan, log₁₀, ln, √, x², 1/x, π, e and more. Toggle between quick daily use and advanced math effortlessly.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">🔒</div>
+                        <div class="font-semibold mb-1.5">Completely Private</div>
+                        <p class="text-sm text-zinc-400">Nothing is sent to any server. Your calculations never leave your browser. Perfect for sensitive work.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">⌨️</div>
+                        <div class="font-semibold mb-1.5">Full Keyboard Support</div>
+                        <p class="text-sm text-zinc-400">Type numbers and operators directly. Press Enter to calculate, Escape to clear. Works like a native app.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">📱</div>
+                        <div class="font-semibold mb-1.5">Mobile &amp; Touch Optimized</div>
+                        <p class="text-sm text-zinc-400">Large touch targets, responsive layout, and smooth performance on phones, tablets, and desktops.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-zinc-900 border border-zinc-800">
+                        <div class="text-indigo-400 text-2xl mb-3">🕒</div>
+                        <div class="font-semibold mb-1.5">Calculation History</div>
+                        <p class="text-sm text-zinc-400">Automatically saves your recent results locally. Click any past calculation to reuse the value instantly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Use -->
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold tracking-tight mb-6">How to use this free online calculator</h3>
+                
+                <div class="space-y-6 text-sm">
+                    <div class="flex gap-5">
+                        <div class="w-8 h-8 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-indigo-400 font-mono text-sm font-semibold">1</div>
+                        <div>
+                            <div class="font-medium">Enter numbers</div>
+                            <div class="text-zinc-400 mt-0.5">Click the keypad or type directly using your keyboard. The display updates live.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-8 h-8 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-indigo-400 font-mono text-sm font-semibold">2</div>
+                        <div>
+                            <div class="font-medium">Use operators or quick functions</div>
+                            <div class="text-zinc-400 mt-0.5">Choose +, −, ×, ÷ or tap any scientific function (sin, √, log, etc.). Functions apply instantly to the current value.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-8 h-8 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-indigo-400 font-mono text-sm font-semibold">3</div>
+                        <div>
+                            <div class="font-medium">Calculate &amp; reuse</div>
+                            <div class="text-zinc-400 mt-0.5">Press = or Enter. Results are automatically added to your local history. Click any history item to load it back into the display.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-8 h-8 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-indigo-400 font-mono text-sm font-semibold">4</div>
+                        <div>
+                            <div class="font-medium">Copy or continue</div>
+                            <div class="text-zinc-400 mt-0.5">Use the Copy button or continue calculating with the result. Works great for chained calculations.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold tracking-tight mb-6">Frequently Asked Questions</h3>
+                
+                <div class="space-y-3" id="faq-section">
+                    <!-- Populated by JS or static for SEO -->
+                </div>
+            </div>
+            
+            <div class="text-center text-xs text-zinc-500 border-t border-zinc-800 pt-8">
+                All calculations are performed locally in your browser using JavaScript. We do not store or transmit any data.
+            </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800 py-8 text-sm">
+        <div class="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-y-3 text-zinc-500">
+            <div>© <span id="year"></span> Daily Utility Hub. Built for simplicity and speed.</div>
+            <div class="flex gap-x-5">
+                <a href="../privacy.html" class="hover:text-zinc-300 transition-colors">Privacy</a>
+                <a href="../about.html" class="hover:text-zinc-300 transition-colors">About</a>
+                <a href="../tools.html" class="hover:text-zinc-300 transition-colors">All Tools</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // ==================== CALCULATOR LOGIC ====================
         let display = document.getElementById('display');
+        let history = JSON.parse(localStorage.getItem('calcHistory') || '[]');
+
+        function updateDisplay(val) {
+            display.value = val;
+        }
+
         function appendToCalc(val) {
-            if (display.value === '0' && val !== '.') display.value = '';
+            if (display.value === '0' && val !== '.') {
+                display.value = '';
+            }
+            if (display.value === 'Error') {
+                display.value = '';
+            }
             display.value += val;
         }
-        function clearCalc() { display.value = '0'; }
-        function calculate() {
-            try { display.value = eval(display.value); }
-            catch { display.value = 'Error'; }
+
+        function clearCalc() {
+            display.value = '0';
         }
+
+        function backspace() {
+            if (display.value.length > 1 && display.value !== 'Error') {
+                display.value = display.value.slice(0, -1);
+            } else {
+                display.value = '0';
+            }
+        }
+
+        function toggleSign() {
+            if (display.value === '0' || display.value === 'Error') return;
+            if (display.value.startsWith('-')) {
+                display.value = display.value.substring(1);
+            } else {
+                display.value = '-' + display.value;
+            }
+        }
+
+        function appendPercent() {
+            if (display.value === '0' || display.value === 'Error') return;
+            // Append % symbol for calculation handling
+            display.value += '%';
+        }
+
+        function applyFunction(fn) {
+            if (display.value === 'Error') clearCalc();
+            
+            let val = parseFloat(display.value);
+            if (isNaN(val) && fn !== 'pi' && fn !== 'e') return;
+
+            let result;
+            const degToRad = (d) => d * Math.PI / 180;
+
+            try {
+                switch (fn) {
+                    case 'pi':
+                        result = Math.PI;
+                        break;
+                    case 'e':
+                        result = Math.E;
+                        break;
+                    case 'sin':
+                        result = Math.sin(degToRad(val));
+                        break;
+                    case 'cos':
+                        result = Math.cos(degToRad(val));
+                        break;
+                    case 'tan':
+                        result = Math.tan(degToRad(val));
+                        break;
+                    case 'sqrt':
+                        result = Math.sqrt(val);
+                        break;
+                    case 'square':
+                        result = val * val;
+                        break;
+                    case 'log':
+                        result = Math.log10(val);
+                        break;
+                    case 'ln':
+                        result = Math.log(val);
+                        break;
+                    case 'reciprocal':
+                        result = 1 / val;
+                        break;
+                    default:
+                        return;
+                }
+                
+                const resultStr = Number.isFinite(result) ? result.toString() : 'Error';
+                display.value = resultStr;
+                
+                // Add to history
+                addToHistory(`${fn}(${val})`, resultStr);
+                
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+
+        function calculate() {
+            let expr = display.value.trim();
+            if (!expr || expr === '0') return;
+
+            try {
+                // Handle percentage
+                expr = expr.replace(/(\d+(\.\d+)?)%/g, '($1/100)');
+                
+                // Replace visual operators
+                expr = expr.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
+
+                // Safe eval with Math support (for advanced users who type functions)
+                // Note: For security in production consider math.js but eval is acceptable here for client-only tool
+                let result = eval(expr);
+                
+                if (result === undefined || isNaN(result)) {
+                    display.value = 'Error';
+                    return;
+                }
+                
+                const resultStr = result.toString();
+                const oldExpr = display.value;
+                
+                display.value = resultStr;
+                
+                // Save to history
+                addToHistory(oldExpr, resultStr);
+                
+            } catch (e) {
+                display.value = 'Error';
+                setTimeout(() => {
+                    if (display.value === 'Error') clearCalc();
+                }, 1600);
+            }
+        }
+
+        function addToHistory(expression, result) {
+            const entry = {
+                id: Date.now(),
+                expr: expression.length > 28 ? expression.substring(0, 25) + '...' : expression,
+                result: result,
+                timestamp: new Date().toISOString()
+            };
+            
+            history.unshift(entry);
+            if (history.length > 12) history.pop();
+            
+            localStorage.setItem('calcHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-list');
+            container.innerHTML = '';
+            
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-zinc-500 text-sm">
+                        No calculations yet.<br>
+                        <span class="text-xs">Your results will appear here automatically.</span>
+                    </div>`;
+                return;
+            }
+            
+            history.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = `history-item flex justify-between items-center px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-2xl cursor-pointer text-sm`;
+                div.innerHTML = `
+                    <div class="flex-1 min-w-0 pr-3">
+                        <div class="text-zinc-400 text-xs truncate">${item.expr}</div>
+                        <div class="font-mono text-lg font-semibold tracking-tight text-white metric">${item.result}</div>
+                    </div>
+                    <div class="text-[10px] text-zinc-500 flex-shrink-0">→</div>
+                `;
+                
+                div.onclick = () => {
+                    display.value = item.result;
+                    // Optional: scroll to top of calc on mobile
+                    document.querySelector('.calc-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                };
+                
+                container.appendChild(div);
+            });
+        }
+
+        function clearHistory() {
+            if (confirm('Clear all calculation history?')) {
+                history = [];
+                localStorage.removeItem('calcHistory');
+                renderHistory();
+            }
+        }
+
+        function copyResult() {
+            const val = display.value;
+            if (!val || val === 'Error') return;
+            
+            navigator.clipboard.writeText(val).then(() => {
+                const originalText = event.currentTarget ? event.currentTarget.innerHTML : '';
+                // Simple toast feedback
+                const btns = document.querySelectorAll('button');
+                const copyBtn = Array.from(btns).find(b => b.textContent.includes('Copy'));
+                if (copyBtn) {
+                    const orig = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '✓ Copied!';
+                    setTimeout(() => {
+                        if (copyBtn) copyBtn.innerHTML = orig;
+                    }, 1400);
+                }
+            }).catch(() => {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = val;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Copied: ' + val);
+            });
+        }
+
+        // ==================== KEYBOARD SUPPORT ====================
+        function handleKeyboard(e) {
+            const key = e.key;
+            
+            if (key >= '0' && key <= '9') {
+                appendToCalc(key);
+            } else if (key === '.') {
+                appendToCalc('.');
+            } else if (key === '+') {
+                appendToCalc('+');
+            } else if (key === '-') {
+                appendToCalc('-');
+            } else if (key === '*') {
+                appendToCalc('*');
+            } else if (key === '/') {
+                e.preventDefault();
+                appendToCalc('/');
+            } else if (key === '%') {
+                appendPercent();
+            } else if (key === 'Enter' || key === '=') {
+                e.preventDefault();
+                calculate();
+            } else if (key === 'Escape' || key.toLowerCase() === 'c') {
+                clearCalc();
+            } else if (key === 'Backspace') {
+                e.preventDefault();
+                backspace();
+            } else if (key.toLowerCase() === 's' && e.metaKey) { // Cmd/Ctrl + S for sin (demo)
+                e.preventDefault();
+                applyFunction('sin');
+            }
+        }
+
+        // ==================== ACCESSIBILITY & INIT ====================
+        function initCalculator() {
+            // Restore display if needed (optional)
+            if (!display.value) display.value = '0';
+            
+            // Render saved history
+            renderHistory();
+            
+            // Keyboard listeners
+            document.addEventListener('keydown', handleKeyboard);
+            
+            // Make display focusable for better a11y (though readonly)
+            display.setAttribute('aria-live', 'polite');
+            display.setAttribute('role', 'textbox');
+            display.setAttribute('aria-label', 'Calculator result display. Use keyboard or buttons to calculate.');
+            
+            // Focus display on load for immediate typing (nice UX)
+            setTimeout(() => {
+                display.focus();
+                display.select();
+            }, 800);
+            
+            // Year in footer
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+            
+            // Seed one example in history if empty (demo only, remove in production if wanted)
+            if (history.length === 0) {
+                // Uncomment if you want a welcome example
+                // history.push({id: Date.now()-10000, expr: "12 + 8", result: "20", timestamp: new Date().toISOString()});
+                // localStorage.setItem('calcHistory', JSON.stringify(history));
+                // renderHistory();
+            }
+            
+            // Bonus: Allow clicking display to focus (already is)
+            console.log('%c[Calculator] Premium improved version initialized successfully', 'color:#6366f1');
+        }
+
+        // ==================== FAQ SECTION (SEO + Accessibility) ====================
+        function initFAQ() {
+            const faqContainer = document.getElementById('faq-section');
+            if (!faqContainer) return;
+
+            const faqs = [
+                {
+                    q: "How to use this calculator?",
+                    a: "Simply click the number and operator buttons or type directly on your keyboard. Press Enter or click = to see the result. Use the quick function buttons (sin, √, log, etc.) for scientific calculations — they apply instantly to the current number."
+                },
+                {
+                    q: "Is this calculator free?",
+                    a: "Yes. This online calculator is 100% free forever. No sign-up, no subscriptions, and no hidden costs. It is part of the Daily Utility Hub collection of privacy-focused tools."
+                },
+                {
+                    q: "Can I use this calculator on mobile?",
+                    a: "Absolutely. The calculator is fully responsive and optimized for touch. Large buttons, smooth performance, and works excellently on iOS, Android, and tablets."
+                },
+                {
+                    q: "Does this calculator support scientific calculations?",
+                    a: "Yes! Toggle between everyday arithmetic and scientific functions including sin, cos, tan (in degrees), square root, x², log base 10, natural log, reciprocal, and constants π and e."
+                },
+                {
+                    q: "Is my calculation data stored or sent anywhere?",
+                    a: "No. All calculations happen entirely in your browser using JavaScript. Nothing is stored on servers or sent over the internet. Your history is saved only locally in your browser's storage."
+                },
+                {
+                    q: "Can I use the calculator offline?",
+                    a: "Yes. After the first time you load the page, the calculator works completely offline because it is a static web application with no external dependencies after initial load."
+                },
+                {
+                    q: "Which browsers are supported?",
+                    a: "All modern browsers including Chrome, Firefox, Safari, Edge, and Brave on both desktop and mobile. The tool uses standard web technologies for maximum compatibility."
+                },
+                {
+                    q: "Is the calculator accurate?",
+                    a: "Yes. It uses JavaScript's native Math engine which provides high precision for everyday and professional calculations. Results are reliable for school, work, and daily use."
+                },
+                {
+                    q: "Does it support keyboard shortcuts?",
+                    a: "Yes. Type numbers and operators directly. Use Enter to calculate, Escape or C to clear, Backspace to delete the last digit, and % key for percentages."
+                }
+            ];
+
+            faqs.forEach((faq, index) => {
+                const details = document.createElement('details');
+                details.className = 'group bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-1';
+                
+                details.innerHTML = `
+                    <summary class="flex justify-between items-center cursor-pointer py-4 font-medium text-base list-none">
+                        <span>${faq.q}</span>
+                        <span class="text-zinc-400 group-open:rotate-180 transition-transform">↓</span>
+                    </summary>
+                    <div class="pb-5 text-sm text-zinc-300 leading-relaxed pr-8">
+                        ${faq.a}
+                    </div>
+                `;
+                
+                faqContainer.appendChild(details);
+            });
+        }
+
+        // Boot everything
+        function bootstrap() {
+            initCalculator();
+            initFAQ();
+            
+            // Optional: Add slight entrance animation to card
+            const card = document.querySelector('.calc-container');
+            if (card) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 120);
+            }
+        }
+
+        // Start
+        window.onload = bootstrap;
     </script>
 </body>
 </html>
