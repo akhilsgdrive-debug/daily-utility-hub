@@ -19,7 +19,59 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
-    <script>tailwind.config = { darkMode: 'class' };</script>
+
+    <!-- SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://akhilsgdrive-debug.github.io/daily-utility-hub/#website",
+          "url": "https://akhilsgdrive-debug.github.io/daily-utility-hub/",
+          "name": "Daily Utility Hub",
+          "description": "Free, fast, and private everyday utility tools that run entirely in your browser.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://akhilsgdrive-debug.github.io/daily-utility-hub/tools.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://akhilsgdrive-debug.github.io/daily-utility-hub/#organization",
+          "name": "Daily Utility Hub",
+          "url": "https://akhilsgdrive-debug.github.io/daily-utility-hub/"
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Daily Utility Hub",
+          "url": "https://akhilsgdrive-debug.github.io/daily-utility-hub/",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Free browser-based tools: Calculator, Notes App, To-Do List, Countdown Timer, Stopwatch, Unit Converter, BMI Calculator, Age Calculator, Password Generator, and Text Utilities."
+        }
+      ]
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
 </head>
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
     <!-- Navigation -->
