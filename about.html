@@ -8,9 +8,11 @@
     <title>About • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
     <script>tailwind.config = { darkMode: 'class' };</script>
 </head>
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+    <!-- Nav -->
     <nav class="sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800">
         <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">
             <a href="index.html" class="flex items-center gap-3">
@@ -30,11 +32,15 @@
             </div>
         </div>
     </nav>
+
     <div class="max-w-3xl mx-auto px-6 py-16">
         <h1 class="text-6xl font-semibold tracking-tighter">Built for people who just want things to work.</h1>
+        
         <div class="prose prose-zinc dark:prose-invert max-w-none mt-10 text-[15px] leading-relaxed">
             <p>Daily Utility Hub was created because we were tired of bloated websites, sign-up walls, and tools that track you just to do simple math or keep a to-do list.</p>
+            
             <p class="mt-6">Every tool here runs <strong>entirely in your browser</strong>. Your notes, todos, calculations, and generated passwords never leave your device. There is no backend, no database, and no analytics.</p>
+            
             <h2 class="text-2xl font-semibold tracking-tight mt-12 mb-4">Our principles</h2>
             <ul class="space-y-2">
                 <li class="flex gap-3"><span class="font-mono text-indigo-600">01</span> <span>Privacy first — localStorage only</span></li>
@@ -43,14 +49,19 @@
                 <li class="flex gap-3"><span class="font-mono text-indigo-600">04</span> <span>Works offline after first load</span></li>
                 <li class="flex gap-3"><span class="font-mono text-indigo-600">05</span> <span>Completely free, forever</span></li>
             </ul>
+            
             <p class="mt-10">The entire project is open source and designed to be easy to fork, modify, and host yourself on GitHub Pages or any static host.</p>
         </div>
+        
         <div class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap gap-4">
             <a href="tools.html" class="inline-flex px-8 py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold">Try the tools →</a>
-            <a href="https://github.com/akhilsgdrive-debug/daily-utility-hub" target="_blank" class="inline-flex px-8 py-3.5 rounded-2xl border border-zinc-300 dark:border-zinc-700 font-medium">View on GitHub</a>
         </div>
     </div>
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 text-center text-sm text-zinc-500">Made with care for everyday productivity.</footer>
+
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-8 text-center text-sm text-zinc-500">
+        Made with care for everyday productivity.
+    </footer>
+
     <script src="js/main.js"></script>
 </body>
 </html>
