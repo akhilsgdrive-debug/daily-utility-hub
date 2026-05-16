@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free private online notes app.">
-    <title>Free Online Notes • Daily Utility Hub</title>
+    <title>Notes • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-zinc-950 text-zinc-100">
     <div class="max-w-2xl mx-auto px-6 py-10">
-        <a href="../tools.html" class="text-sm text-zinc-400">← Back</a>
-        <h1 class="text-4xl font-semibold tracking-tighter mt-4">Notes</h1>
-        <textarea id="note" class="mt-6 w-full h-80 p-6 rounded-3xl border border-zinc-700 bg-zinc-900"></textarea>
-        <button onclick="saveNote()" class="mt-4 px-8 py-3 bg-white text-zinc-900 rounded-2xl">Save Note</button>
+        <a href="../tools.html" class="text-sm text-zinc-400">← Back to Tools</a>
+        <h1 class="text-4xl font-semibold tracking-tighter mt-6">Notes</h1>
+        <textarea id="note" class="mt-6 w-full h-80 p-6 rounded-3xl border border-zinc-700 bg-zinc-900 text-lg"></textarea>
+        <button onclick="saveNote()" class="mt-4 px-8 py-3.5 bg-white text-zinc-900 rounded-2xl font-medium">Save Note</button>
     </div>
     <script>
-        const textarea = document.getElementById('note');
-        textarea.value = localStorage.getItem('daily_notes') || '';
-        function saveNote() { localStorage.setItem('daily_notes', textarea.value); alert('Saved!'); }
+        const ta = document.getElementById('note');
+        ta.value = localStorage.getItem('daily_notes') || '';
+        function saveNote() { localStorage.setItem('daily_notes', ta.value); alert('Note saved!'); }
     </script>
 </body>
 </html>

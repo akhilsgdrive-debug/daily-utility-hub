@@ -9,10 +9,11 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100">
     <div class="max-w-xl mx-auto px-6 py-10">
-        <h1 class="text-4xl font-semibold tracking-tighter">To-Do List</h1>
-        <div class="flex gap-2 mt-6">
-            <input id="task" class="flex-1 px-4 py-3 rounded-2xl border border-zinc-700 bg-zinc-900">
-            <button onclick="addTask()" class="px-6 bg-white text-zinc-900 rounded-2xl">Add</button>
+        <a href="../tools.html" class="text-sm text-zinc-400">← Back</a>
+        <h1 class="text-4xl font-semibold tracking-tighter mt-6">To-Do List</h1>
+        <div class="flex gap-3 mt-6">
+            <input id="task" class="flex-1 px-4 py-3.5 rounded-2xl border border-zinc-700 bg-zinc-900" placeholder="Add new task">
+            <button onclick="addTask()" class="px-8 bg-white text-zinc-900 rounded-2xl font-medium">Add</button>
         </div>
         <ul id="list" class="mt-6 space-y-2"></ul>
     </div>
@@ -21,8 +22,8 @@
             const input = document.getElementById('task');
             if (!input.value.trim()) return;
             const li = document.createElement('li');
-            li.className = 'p-4 border border-zinc-700 rounded-2xl flex justify-between';
-            li.innerHTML = `<span>${input.value}</span> <button onclick="this.parentElement.remove()" class="text-red-400">Delete</button>`;
+            li.className = 'p-4 border border-zinc-700 rounded-2xl flex justify-between items-center';
+            li.innerHTML = `<span>${input.value}</span> <button onclick="this.parentElement.remove()" class="text-red-400 text-sm">Delete</button>`;
             document.getElementById('list').appendChild(li);
             input.value = '';
         }
