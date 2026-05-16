@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://akhilsgdrive-debug.github.io/daily-utility-hub/sitemap.xml
