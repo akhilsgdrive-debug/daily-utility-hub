@@ -1,48 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online calculator. Fast, simple and private.">
-    <title>Free Online Calculator • Daily Utility Hub</title>
+    <title>Free Online Calculator with Scientific Functions • Daily Utility Hub</title>
+    <meta name="description" content="Fast, free, private online calculator. Basic arithmetic and scientific calculations (sin, cos, log, sqrt, π) instantly in your browser.">
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-zinc-950 text-zinc-100">
-    <div class="max-w-sm mx-auto px-6 py-10">
-        <a href="../tools.html" class="text-sm text-zinc-400">← Back to Tools</a>
-        <h1 class="text-4xl font-semibold tracking-tighter mt-6">Calculator</h1>
-
-        <input id="display" type="text" value="0" readonly class="mt-8 w-full text-right text-5xl font-mono bg-zinc-900 border border-zinc-700 rounded-3xl px-6 py-6">
-
-        <div class="grid grid-cols-4 gap-3 mt-6">
-            <button onclick="clearCalc()" class="col-span-1 p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">C</button>
-            <button onclick="appendToCalc('/')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">÷</button>
-            <button onclick="appendToCalc('*')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">×</button>
-            <button onclick="appendToCalc('-')" class="p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">−</button>
-
-            <button onclick="appendToCalc('7')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">7</button>
-            <button onclick="appendToCalc('8')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">8</button>
-            <button onclick="appendToCalc('9')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">9</button>
-            <button onclick="appendToCalc('+')" class="row-span-2 p-6 rounded-2xl bg-zinc-800 active:bg-zinc-700">+</button>
-
-            <button onclick="appendToCalc('4')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">4</button>
-            <button onclick="appendToCalc('5')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">5</button>
-            <button onclick="appendToCalc('6')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">6</button>
-
-            <button onclick="appendToCalc('1')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">1</button>
-            <button onclick="appendToCalc('2')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">2</button>
-            <button onclick="appendToCalc('3')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">3</button>
-            <button onclick="calculate()" class="row-span-2 p-6 rounded-2xl bg-emerald-600 active:bg-emerald-700">=</button>
-
-            <button onclick="appendToCalc('0')" class="col-span-2 p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">0</button>
-            <button onclick="appendToCalc('.')" class="p-6 rounded-2xl bg-zinc-900 active:bg-zinc-800">.</button>
-        </div>
-    </div>
     <script>
-        let display = document.getElementById('display');
-        function appendToCalc(val) { if (display.value === '0' && val !== '.') display.value = ''; display.value += val; }
-        function clearCalc() { display.value = '0'; }
-        function calculate() { try { display.value = eval(display.value); } catch { display.value = 'Error'; } }
+        tailwind.config = { darkMode: 'class' };
     </script>
+    <style>
+        body { font-family: Inter, system-ui, sans-serif; }
+        .calc-btn { transition: all .1s ease; font-weight: 600; user-select: none; }
+        .calc-btn:active { transform: scale(.96); }
+        .number-btn { background-color: #27251f; color: #f4f4f5; }
+        .operator-btn { background-color: #3f3e3a; color: #e4e4e7; }
+        .function-btn { background-color: #27251f; color: #a1a1aa; font-size: .875rem; padding: .5rem 0; }
+        .equals-btn { background: linear-gradient(135deg,#6366f1,#4f46e5); color: white; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+<nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">
+    <a href="../index.html" class="font-semibold text-xl tracking-tight">Daily Utility <span class="text-indigo-400">Hub</span></a>
+    <a href="../tools.html" class="inline-flex items-center px-5 py-2 rounded-2xl bg-white text-zinc-900 text-sm font-semibold">All Tools</a>
+  </div>
+</nav>
+<div class="max-w-screen-xl mx-auto px-6 pt-10 pb-16">
+  <h1 class="text-5xl font-semibold tracking-tighter mb-2">Calculator</h1>
+  <p class="text-xl text-zinc-400 mb-8">Fast • Private • Scientific-ready</p>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-7">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+        <input id="display" type="text" value="0" readonly class="w-full text-right text-6xl sm:text-7xl font-semibold bg-zinc-950 border border-zinc-800 rounded-3xl px-8 py-7">
+        <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mt-5">
+          <button onclick="applyFunction('pi')" class="function-btn calc-btn rounded-2xl border border-zinc-700">π</button>
+          <button onclick="applyFunction('e')" class="function-btn calc-btn rounded-2xl border border-zinc-700">e</button>
+          <button onclick="applyFunction('sin')" class="function-btn calc-btn rounded-2xl border border-zinc-700">sin</button>
+          <button onclick="applyFunction('cos')" class="function-btn calc-btn rounded-2xl border border-zinc-700">cos</button>
+          <button onclick="applyFunction('tan')" class="function-btn calc-btn rounded-2xl border border-zinc-700">tan</button>
+          <button onclick="applyFunction('sqrt')" class="function-btn calc-btn rounded-2xl border border-zinc-700">√</button>
+          <button onclick="applyFunction('square')" class="function-btn calc-btn rounded-2xl border border-zinc-700">x²</button>
+          <button onclick="applyFunction('log')" class="function-btn calc-btn rounded-2xl border border-zinc-700">log₁₀</button>
+          <button onclick="applyFunction('ln')" class="function-btn calc-btn rounded-2xl border border-zinc-700">ln</button>
+          <button onclick="applyFunction('reciprocal')" class="function-btn calc-btn rounded-2xl border border-zinc-700">1/x</button>
+        </div>
+        <div class="grid grid-cols-4 gap-3 mt-5">
+          <button onclick="clearCalc()" class="calc-btn operator-btn rounded-2xl py-5 text-xl">AC</button>
+          <button onclick="toggleSign()" class="calc-btn operator-btn rounded-2xl py-5 text-xl">+/-</button>
+          <button onclick="appendPercent()" class="calc-btn operator-btn rounded-2xl py-5 text-xl">%</button>
+          <button onclick="appendToCalc('/')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl">÷</button>
+          <button onclick="appendToCalc('7')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">7</button><button onclick="appendToCalc('8')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">8</button><button onclick="appendToCalc('9')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">9</button><button onclick="appendToCalc('*')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl">×</button>
+          <button onclick="appendToCalc('4')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">4</button><button onclick="appendToCalc('5')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">5</button><button onclick="appendToCalc('6')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">6</button><button onclick="appendToCalc('-')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl">−</button>
+          <button onclick="appendToCalc('1')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">1</button><button onclick="appendToCalc('2')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">2</button><button onclick="appendToCalc('3')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">3</button><button onclick="appendToCalc('+')" class="calc-btn operator-btn rounded-2xl py-5 text-2xl">+</button>
+          <button onclick="appendToCalc('0')" class="calc-btn number-btn rounded-2xl py-5 text-2xl col-span-2">0</button><button onclick="appendToCalc('.')" class="calc-btn number-btn rounded-2xl py-5 text-2xl">.</button><button onclick="calculate()" class="calc-btn equals-btn rounded-2xl py-5 text-3xl">=</button>
+        </div>
+      </div>
+    </div>
+    <div class="lg:col-span-5"><div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6"><div class="font-semibold">Calculation History</div><div id="history-list" class="mt-3"></div></div></div>
+  </div>
+</div>
+<script>
+let display=document.getElementById('display');let history=JSON.parse(localStorage.getItem('calcHistory')||'[]');
+function appendToCalc(v){if(display.value==='0'&&v!=='.')display.value='';if(display.value==='Error')display.value='';display.value+=v}
+function clearCalc(){display.value='0'}
+function toggleSign(){if(display.value==='0'||display.value==='Error')return;display.value=display.value.startsWith('-')?display.value.substring(1):'-'+display.value}
+function appendPercent(){if(display.value==='0'||display.value==='Error')return;display.value+='%'}
+function applyFunction(fn){if(display.value==='Error')clearCalc();let val=parseFloat(display.value);if(isNaN(val)&&fn!=='pi'&&fn!=='e')return;let result;const d2r=d=>d*Math.PI/180;switch(fn){case 'pi':result=Math.PI;break;case 'e':result=Math.E;break;case 'sin':result=Math.sin(d2r(val));break;case 'cos':result=Math.cos(d2r(val));break;case 'tan':result=Math.tan(d2r(val));break;case 'sqrt':result=Math.sqrt(val);break;case 'square':result=val*val;break;case 'log':result=Math.log10(val);break;case 'ln':result=Math.log(val);break;case 'reciprocal':result=1/val;break;default:return;}display.value=Number.isFinite(result)?result.toString():'Error';addToHistory(`${fn}(${val})`,display.value)}
+function calculate(){let expr=display.value.trim();if(!expr||expr==='0')return;try{expr=expr.replace(/(\d+(\.\d+)?)%/g,'($1/100)').replace(/÷/g,'/').replace(/×/g,'*').replace(/−/g,'-');let result=eval(expr);if(result===undefined||isNaN(result)){display.value='Error';return;}let old=display.value;display.value=result.toString();addToHistory(old,display.value)}catch(e){display.value='Error';setTimeout(()=>{if(display.value==='Error')clearCalc()},1600)}}
+function addToHistory(expression,result){history.unshift({id:Date.now(),expr:expression,result});if(history.length>12)history.pop();localStorage.setItem('calcHistory',JSON.stringify(history));renderHistory()}
+function renderHistory(){const c=document.getElementById('history-list');if(!history.length){c.innerHTML='<div class="text-zinc-500 text-sm">No calculations yet.</div>';return;}c.innerHTML=history.map(h=>`<button class="block w-full text-left bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 mb-2" onclick="display.value='${h.result}'"><div class="text-zinc-400 text-xs">${h.expr}</div><div class="font-mono text-lg">${h.result}</div></button>`).join('')}
+window.onload=()=>{renderHistory();document.addEventListener('keydown',e=>{const k=e.key;if(k>='0'&&k<='9')appendToCalc(k);else if(['.','+','-','*','/'].includes(k)){if(k==='/')e.preventDefault();appendToCalc(k)}else if(k==='%')appendPercent();else if(k==='Enter'||k==='='){e.preventDefault();calculate()}else if(k==='Escape'||k.toLowerCase()==='c')clearCalc();else if(k==='Backspace'){e.preventDefault();display.value=display.value.length>1?display.value.slice(0,-1):'0';}})}
+</script>
 </body>
 </html>
