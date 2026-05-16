@@ -9,31 +9,89 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Tools Page (Most Important) -->
+  <!-- Tools Hub -->
   <url>
     <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
-  
-  <!-- About Page -->
+
+  <!-- Individual Tool Pages -->
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/calculator.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/notes.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/todo.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/countdown-timer.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/stopwatch.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/unit-converter.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/bmi-calculator.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/age-calculator.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/password-generator.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/tools/text-utilities.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Other Pages -->
   <url>
     <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/about.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Contact Page -->
   <url>
     <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/contact.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
-  <!-- Privacy Policy -->
   <url>
     <loc>https://akhilsgdrive-debug.github.io/daily-utility-hub/privacy.html</loc>
     <lastmod>2026-05-17</lastmod>
