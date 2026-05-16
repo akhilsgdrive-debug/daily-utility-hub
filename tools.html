@@ -3,29 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="All free tools at Daily Utility Hub. Calculator, Notes, To-Do, Timers, Converters and more.">
+    <meta name="description" content="All free tools at Daily Utility Hub. Calculator, Notes, To-Do List, Timers, Converters, Password Generator and more.">
     <title>All Tools • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <script>tailwind.config = { darkMode: 'class' };</script>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950">
-    <nav class="border-b">
-        <div class="max-w-screen-xl mx-auto px-6 h-16 flex items-center">
-            <a href="index.html" class="font-semibold">Daily Utility Hub</a>
+<body class="bg-zinc-950 text-zinc-100">
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur border-b border-zinc-800">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">D</div>
+                <span class="font-semibold text-xl">Daily Utility <span class="text-indigo-400">Hub</span></span>
+            </a>
+            <a href="index.html" class="text-sm hover:text-indigo-400">← Back to Home</a>
         </div>
     </nav>
-    <div class="max-w-screen-xl mx-auto px-6 py-10">
-        <h1 class="text-5xl font-semibold tracking-tighter">All Tools</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-            <a href="tools/calculator.html" class="p-6 rounded-3xl border block hover:border-zinc-400">🧮 Calculator</a>
-            <a href="tools/notes.html" class="p-6 rounded-3xl border block hover:border-zinc-400">📝 Notes</a>
-            <a href="tools/todo.html" class="p-6 rounded-3xl border block hover:border-zinc-400">✅ To-Do List</a>
-            <a href="tools/countdown-timer.html" class="p-6 rounded-3xl border block hover:border-zinc-400">⏳ Countdown Timer</a>
-            <a href="tools/stopwatch.html" class="p-6 rounded-3xl border block hover:border-zinc-400">⏱️ Stopwatch</a>
-            <a href="tools/unit-converter.html" class="p-6 rounded-3xl border block hover:border-zinc-400">🔄 Unit Converter</a>
-            <a href="tools/bmi-calculator.html" class="p-6 rounded-3xl border block hover:border-zinc-400">⚖️ BMI Calculator</a>
-            <a href="tools/age-calculator.html" class="p-6 rounded-3xl border block hover:border-zinc-400">🎂 Age Calculator</a>
-            <a href="tools/password-generator.html" class="p-6 rounded-3xl border block hover:border-zinc-400">🔐 Password Generator</a>
-            <a href="tools/text-utilities.html" class="p-6 rounded-3xl border block hover:border-zinc-400">📄 Text Utilities</a>
+
+    <div class="max-w-screen-xl mx-auto px-6 py-12">
+        <h1 class="text-6xl font-semibold tracking-tighter">All Tools</h1>
+        <p class="mt-2 text-zinc-400">10 powerful, private utilities. Click any to open.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
+            <a href="tools/calculator.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">🧮</div>
+                <div class="font-semibold text-lg">Calculator</div>
+                <div class="text-sm text-zinc-400 mt-1">Basic arithmetic</div>
+            </a>
+            <a href="tools/notes.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">📝</div>
+                <div class="font-semibold text-lg">Notes</div>
+                <div class="text-sm text-zinc-400 mt-1">Private notes</div>
+            </a>
+            <a href="tools/todo.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">✅</div>
+                <div class="font-semibold text-lg">To-Do List</div>
+                <div class="text-sm text-zinc-400 mt-1">Task manager</div>
+            </a>
+            <a href="tools/countdown-timer.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">⏳</div>
+                <div class="font-semibold text-lg">Countdown Timer</div>
+                <div class="text-sm text-zinc-400 mt-1">Set countdowns</div>
+            </a>
+            <a href="tools/stopwatch.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">⏱️</div>
+                <div class="font-semibold text-lg">Stopwatch</div>
+                <div class="text-sm text-zinc-400 mt-1">Track time</div>
+            </a>
+            <a href="tools/unit-converter.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">🔄</div>
+                <div class="font-semibold text-lg">Unit Converter</div>
+                <div class="text-sm text-zinc-400 mt-1">Convert units</div>
+            </a>
+            <a href="tools/bmi-calculator.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">⚖️</div>
+                <div class="font-semibold text-lg">BMI Calculator</div>
+                <div class="text-sm text-zinc-400 mt-1">Calculate BMI</div>
+            </a>
+            <a href="tools/age-calculator.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">🎂</div>
+                <div class="font-semibold text-lg">Age Calculator</div>
+                <div class="text-sm text-zinc-400 mt-1">Calculate age</div>
+            </a>
+            <a href="tools/password-generator.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">🔐</div>
+                <div class="font-semibold text-lg">Password Generator</div>
+                <div class="text-sm text-zinc-400 mt-1">Strong passwords</div>
+            </a>
+            <a href="tools/text-utilities.html" class="p-6 rounded-3xl border border-zinc-800 hover:border-zinc-600 block">
+                <div class="text-3xl mb-3">📄</div>
+                <div class="font-semibold text-lg">Text Utilities</div>
+                <div class="text-sm text-zinc-400 mt-1">Word count &amp; more</div>
+            </a>
         </div>
     </div>
 </body>
