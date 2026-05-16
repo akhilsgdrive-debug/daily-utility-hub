@@ -1,1 +1,25 @@
-REPLACED
+/* Daily Utility Hub - Custom Styles */
+:root { --primary: #6366f1; }
+body { font-family: 'Inter', system_ui, sans-serif; }
+.tool-card, .nav-link, button, .modal-content { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.tool-card { @apply bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 flex flex-col; }
+.tool-card:hover { @apply shadow-xl -translate-y-0.5 border-zinc-300 dark:border-zinc-700; }
+.tool-card .icon { @apply w-12 h-12 flex items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 mb-4; }
+.modal { animation: fadeInModal 0.2s ease forwards; }
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+.modal-content { animation: slideUpModal 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+@keyframes slideUpModal { from { transform: translateY(20px) scale(0.98); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+.calculator-display { font-family: 'SF Mono', 'Monaco', 'Menlo', monospace; font-size: 2rem; line-height: 1; }
+.calc-btn { @apply flex items-center justify-center h-14 text-lg font-medium rounded-2xl transition-all active:scale-[0.985]; }
+.calc-btn:hover { filter: brightness(0.95); }
+.calc-btn.operator { @apply bg-indigo-600 text-white hover:bg-indigo-700; }
+.calc-btn.number { @apply bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700; }
+.calc-btn.equals { @apply bg-emerald-600 text-white hover:bg-emerald-700 col-span-1; }
+.timer-display { font-family: 'SF Mono', 'Monaco', 'Menlo', monospace; font-size: 3.5rem; line-height: 1; font-feature-settings: "tnum"; }
+.note-item, .todo-item { @apply bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 transition-all; }
+.note-item:hover, .todo-item:hover { @apply border-zinc-300 dark:border-zinc-700; }
+textarea, input[type="text"], input[type="number"], input[type="date"] { @apply transition-all focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500; }
+.strength-bar { height: 6px; border-radius: 9999px; transition: width 0.3s ease, background-color 0.3s ease; }
+@media (max-width: 640px) { .timer-display { font-size: 2.75rem; } .tool-card { padding: 1.25rem; } }
+@media print { .no-print { display: none !important; } }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
