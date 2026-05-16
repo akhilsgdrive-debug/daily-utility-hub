@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online unit converter.">
+    <meta name="description" content="Free online unit converter for length, weight and more.">
     <title>Unit Converter • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 py-12">
-    <div class="max-w-md mx-auto px-6">
-        <h1 class="text-4xl font-semibold">Unit Converter</h1>
-        <input id="v" type="number" value="1" class="mt-6 w-full px-4 py-3 rounded-2xl border">
-        <button onclick="conv()" class="mt-4 w-full py-3 bg-zinc-900 text-white rounded-2xl">Convert Meters to KM</button>
-        <div id="r" class="mt-4 p-4 rounded-2xl border hidden"></div>
+<body class="bg-zinc-50 dark:bg-zinc-950">
+    <div class="max-w-md mx-auto px-6 py-10">
+        <h1 class="text-4xl font-semibold tracking-tighter">Unit Converter</h1>
+        <div class="mt-8">
+            <input id="value" type="number" value="1" class="w-full px-4 py-3 rounded-2xl border">
+            <select id="from" class="mt-3 w-full px-4 py-3 rounded-2xl border">
+                <option value="m">Meters</option>
+                <option value="km">Kilometers</option>
+            </select>
+            <button onclick="convert()" class="mt-4 w-full py-4 bg-zinc-900 text-white rounded-2xl">Convert</button>
+            <div id="result" class="hidden mt-4 p-4 rounded-2xl border"></div>
+        </div>
     </div>
-    <script>function conv(){const v=parseFloat(document.getElementById('v').value);document.getElementById('r').textContent=(v/1000)+' km';document.getElementById('r').classList.remove('hidden');}</script>
+    <script>
+        function convert() {
+            const val = parseFloat(document.getElementById('value').value);
+            const from = document.getElementById('from').value;
+            let res = '';
+            if (from === 'm') res = (val / 1000) + ' km';
+            document.getElementById('result').textContent = res;
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
