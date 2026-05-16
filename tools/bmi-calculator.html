@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free BMI Calculator online.">
+    <meta name="description" content="Free BMI Calculator. Calculate your Body Mass Index quickly and privately.">
     <title>BMI Calculator • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 py-12">
-    <div class="max-w-md mx-auto px-6">
-        <h1 class="text-4xl font-semibold">BMI Calculator</h1>
-        <input id="h" type="number" placeholder="Height cm" class="mt-6 w-full px-4 py-3 rounded-2xl border">
-        <input id="w" type="number" placeholder="Weight kg" class="mt-3 w-full px-4 py-3 rounded-2xl border">
-        <button onclick="calc()" class="mt-4 w-full py-3 bg-zinc-900 text-white rounded-2xl">Calculate</button>
-        <div id="r" class="mt-4 p-4 rounded-2xl border hidden"></div>
+<body class="bg-zinc-50 dark:bg-zinc-950">
+    <div class="max-w-md mx-auto px-6 py-10">
+        <h1 class="text-4xl font-semibold tracking-tighter">BMI Calculator</h1>
+        <p class="mt-2 text-zinc-400">Calculate your Body Mass Index using height and weight.</p>
+
+        <div class="mt-8 space-y-4">
+            <input id="height" type="number" placeholder="Height in cm" class="w-full px-4 py-3 rounded-2xl border">
+            <input id="weight" type="number" placeholder="Weight in kg" class="w-full px-4 py-3 rounded-2xl border">
+            <button onclick="calculateBMI()" class="w-full py-4 bg-zinc-900 text-white rounded-2xl">Calculate BMI</button>
+            <div id="result" class="hidden p-6 rounded-3xl border text-center"></div>
+        </div>
+
+        <div class="mt-8 text-sm text-zinc-400">
+            <strong>BMI Categories:</strong><br>
+            Below 18.5 → Underweight<br>
+            18.5–24.9 → Normal<br>
+            25–29.9 → Overweight<br>
+            30+ → Obese
+        </div>
     </div>
-    <script>function calc(){const h=parseFloat(document.getElementById('h').value)/100;const w=parseFloat(document.getElementById('w').value);const b=(w/(h*h)).toFixed(1);document.getElementById('r').textContent='BMI: '+b;document.getElementById('r').classList.remove('hidden');}</script>
+    <script>
+        function calculateBMI() {
+            const h = parseFloat(document.getElementById('height').value) / 100;
+            const w = parseFloat(document.getElementById('weight').value);
+            if (!h || !w) return alert('Please enter valid values');
+            const bmi = (w / (h * h)).toFixed(1);
+            document.getElementById('result').innerHTML = `Your BMI is <strong class="text-2xl">${bmi}</strong>`;
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>

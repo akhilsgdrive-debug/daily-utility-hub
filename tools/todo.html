@@ -3,16 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online to-do list. Simple task manager.">
+    <meta name="description" content="Free online to-do list. Create tasks, stay organized. Simple and private.">
     <title>Free To-Do List • Daily Utility Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 py-10">
-    <div class="max-w-xl mx-auto px-6">
-        <h1 class="text-4xl font-semibold">To-Do List</h1>
-        <div class="flex gap-2 mt-6"><input id="task" class="flex-1 px-4 py-3 rounded-2xl border"><button onclick="add()" class="px-6 bg-zinc-900 text-white rounded-2xl">Add</button></div>
+<body class="bg-zinc-50 dark:bg-zinc-950">
+    <div class="max-w-xl mx-auto px-6 py-10">
+        <a href="../tools.html" class="text-sm">← Back to Tools</a>
+        <h1 class="text-4xl font-semibold tracking-tighter mt-4">To-Do List</h1>
+        <p class="mt-2 text-zinc-600 dark:text-zinc-400">Simple task manager that saves in your browser. Stay organized effortlessly.</p>
+
+        <div class="mt-8 flex gap-2">
+            <input id="task" class="flex-1 px-4 py-3 rounded-2xl border" placeholder="Add a new task...">
+            <button onclick="addTask()" class="px-6 bg-zinc-900 text-white rounded-2xl">Add</button>
+        </div>
         <ul id="list" class="mt-6 space-y-2"></ul>
+
+        <div class="mt-8 text-sm text-zinc-600 dark:text-zinc-400">
+            <h3 class="font-semibold">Tips</h3>
+            <ul class="list-disc pl-5 mt-2">
+                <li>Break big tasks into smaller ones</li>
+                <li>Review your list every morning</li>
+                <li>Mark tasks as done for satisfaction</li>
+            </ul>
+        </div>
     </div>
-    <script>function add(){const i=document.getElementById('task');if(!i.value)return;const l=document.createElement('li');l.className='p-4 border rounded-2xl flex justify-between';l.innerHTML=`<span>${i.value}</span><button onclick="this.parentElement.remove()">Delete</button>`;document.getElementById('list').appendChild(l);i.value='';}</script>
+    <script>
+        function addTask() {
+            const input = document.getElementById('task');
+            if (!input.value.trim()) return;
+            const li = document.createElement('li');
+            li.className = 'p-4 border rounded-2xl flex justify-between items-center';
+            li.innerHTML = `<span>${input.value}</span> <button onclick="this.parentElement.remove()" class="text-red-500 text-sm">Delete</button>`;
+            document.getElementById('list').appendChild(li);
+            input.value = '';
+        }
+    </script>
 </body>
 </html>
